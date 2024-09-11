@@ -11,7 +11,6 @@ export const AssetList: FC = () => {
     const [assets, setAssets] = useState<Asset[]>([]);
 
     useEffect(() => {
-        // Fetch assets from the backend
         axios.get('http://localhost:4000/assets')
             .then(response => setAssets(response.data))
             .catch(error => console.error('Error fetching assets:', error));
