@@ -18,6 +18,8 @@
     "axios": "^1.7.7",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
+    "http-browserify": "^1.7.0",
+    "https-browserify": "^1.0.0",
     "mpl-core-staking-frontend": "file:",
     "node-polyfill-webpack-plugin": "^4.0.0",
     "process": "^0.11.10",
@@ -26,7 +28,9 @@
     "react-router-dom": "^6.26.2",
     "react-scripts": "5.0.1",
     "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
     "typescript": "^4.9.5",
+    "url": "^0.11.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
