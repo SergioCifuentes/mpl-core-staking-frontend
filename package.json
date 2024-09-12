@@ -33,6 +33,9 @@
     "url": "^0.11.4",
     "web-vitals": "^2.1.4"
   },
+  "engines": {
+    "node": "18.17.0"
+  },
   "scripts": {
     "start": "cross-env GENERATE_SOURCEMAP=false craco start",
     "build": "cross-env GENERATE_SOURCEMAP=false craco build",
