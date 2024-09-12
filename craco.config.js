@@ -1,9 +1,10 @@
 // craco.config.js
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
-
+const path = require('path');
 module.exports = {
   webpack: {
     configure: (webpackConfig) => {
+      webpackConfig.resolve.modules = [path.resolve(__dirname, 'src'), 'node_modules'];
       webpackConfig.resolve.fallback = {
         ...webpackConfig.resolve.fallback,
         crypto: require.resolve('crypto-browserify'),
