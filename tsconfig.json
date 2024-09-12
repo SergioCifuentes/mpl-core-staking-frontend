@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "baseUrl": "src", // Set the base URL for module resolution
+    "paths": {
+      "*": ["node_modules/*"]
+    },
     "lib": [
       "dom",
       "dom.iterable",

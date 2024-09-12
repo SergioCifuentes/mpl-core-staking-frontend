@@ -37,7 +37,7 @@
     "node": "18.17.0"
   },
   "scripts": {
-    "postinstall": "ln -s /workspace/node_modules ./src/node_modules || true",
+    "postinstall": "node ./scripts/create-symlink.js",
     "start": "cross-env GENERATE_SOURCEMAP=false craco start",
     "build": "cross-env GENERATE_SOURCEMAP=false craco build",
     "test": "craco test",
