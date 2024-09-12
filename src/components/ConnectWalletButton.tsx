@@ -1,5 +1,5 @@
-import React, { FC, useMemo } from "react";
-import { useWallet, WalletProvider } from '@solana/wallet-adapter-react';
+import { FC, useMemo } from "react";
+import { WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import {
     PhantomWalletAdapter,
