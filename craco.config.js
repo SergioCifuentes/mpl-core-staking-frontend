@@ -1,6 +1,8 @@
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const path = require('path');
 
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
 module.exports = {
   webpack: {
     configure: (webpackConfig) => {
@@ -25,7 +27,10 @@ module.exports = {
     },
   },
   babel: {
-    presets: ['@babel/preset-env', '@babel/preset-react'],
-    plugins: [] // No plugins here to avoid conflicts
+    // Only include react-refresh plugin in development mode
+    plugins: isDevelopment ? ['react-refresh/babel'] : [],
   },
+  plugins: isDevelopment
+    ? [{ plugin: require('@pmmmwh/react-refresh-webpack-plugin') }]
+    : [],
 };
