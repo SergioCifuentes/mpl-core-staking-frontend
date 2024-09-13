@@ -39,7 +39,7 @@
   "scripts": {
     "start": "cross-env GENERATE_SOURCEMAP=false craco start",
     "build": "cross-env GENERATE_SOURCEMAP=false craco build",
-    "test": "craco test",
+    "test": "cross-env GENERATE_SOURCEMAP=false craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
