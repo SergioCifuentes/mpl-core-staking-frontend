@@ -4,9 +4,10 @@ const path = require('path');
 module.exports = {
   webpack: {
     configure: (webpackConfig) => {
+      // Ensure Webpack resolves modules correctly
       webpackConfig.resolve.modules = [path.resolve(__dirname, 'src'), 'node_modules'];
-      
-      // Remove symlinks from fallback
+
+      // Set fallbacks for Node.js core modules no longer polyfilled in Webpack 5
       webpackConfig.resolve.fallback = {
         ...webpackConfig.resolve.fallback,
         crypto: require.resolve('crypto-browserify'),
@@ -15,12 +16,13 @@ module.exports = {
         process: require.resolve('process/browser'),
       };
 
-      // Add symlinks option under resolve, not fallback
-      webpackConfig.resolve.symlinks = true;
+      // Set symlinks outside fallback
+      webpackConfig.resolve.symlinks = true; // <-- Move symlinks out of fallback
 
+      // Add Node polyfills for Webpack 5
       webpackConfig.plugins = [
         ...(webpackConfig.plugins || []),
-        new NodePolyfillPlugin(),
+        new NodePolyfillPlugin()
       ];
 
       return webpackConfig;
