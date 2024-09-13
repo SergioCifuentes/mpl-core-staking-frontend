@@ -6,8 +6,10 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 module.exports = {
   webpack: {
     configure: (webpackConfig) => {
+      // Ensure Webpack resolves modules correctly
       webpackConfig.resolve.modules = [path.resolve(__dirname, 'src'), 'node_modules'];
 
+      // Set fallbacks for Node.js core modules no longer polyfilled in Webpack 5
       webpackConfig.resolve.fallback = {
         ...webpackConfig.resolve.fallback,
         crypto: require.resolve('crypto-browserify'),
@@ -18,6 +20,7 @@ module.exports = {
 
       webpackConfig.resolve.symlinks = true;
 
+      // Add Node polyfills for Webpack 5
       webpackConfig.plugins = [
         ...(webpackConfig.plugins || []),
         new NodePolyfillPlugin(),
@@ -27,10 +30,19 @@ module.exports = {
     },
   },
   babel: {
-    // Only include react-refresh plugin in development mode
-    plugins: isDevelopment ? ['react-refresh/babel'] : [],
+    // Only include react-refresh plugin in development mode and avoid duplicates
+    plugins: isDevelopment
+      ? [
+          // Check for existing babel plugins to avoid duplicates
+          [require.resolve('react-refresh/babel')],
+        ]
+      : [],
   },
   plugins: isDevelopment
-    ? [{ plugin: require('@pmmmwh/react-refresh-webpack-plugin') }]
+    ? [
+        {
+          plugin: require('@pmmmwh/react-refresh-webpack-plugin'),
+        },
+      ]
     : [],
 };
